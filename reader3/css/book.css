@@ -1,0 +1,28 @@
+/*#text {  
+	margin:0 auto;
+	width:800px;
+}
+#drop {
+    color:#ccc;
+	font-size:25px;
+	margin:20px;
+	padding:5px;
+}
+#drop.enter {
+	background:#ccc;
+	color:white;
+}
+#click {
+	text-decoration:underline;
+}
+
+input[type='file'] {
+	
+}*/
+#status {
+	position:fixed;
+	top:0;
+	right:0;
+	margin-right:5px;
+	font-size:10px;
+}

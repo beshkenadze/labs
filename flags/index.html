@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Country Flag</title>
+<link href="css/master.css" rel="stylesheet" media="all" />
+</head>
+<body>
+<table class='words'>
+	<tr>
+		<td><a class="word" href="#">a</a></td>
+		<td><a class="word" href="#">b</a></td>
+		<td><a class="word" href="#">c</a></td>
+		<td><a class="word" href="#">d</a></td>
+		<td><a class="word" href="#">e</a></td>
+		<td><a class="word" href="#">f</a></td>
+		<td rowspan="7"><img id="flags" src="css/images/flags.png" /></td>
+	</tr>
+	<tr>
+		<td><a class="word" href="#">g</a></td>
+		<td><a class="word" href="#">h</a></td>
+		<td><a class="word" href="#">i</a></td>
+		<td><a class="word" href="#">j</a></td>
+		<td><a class="word" href="#">k</a></td>
+		<td><a class="word" href="#">l</a></td>
+	</tr>
+	<tr>
+		<td><a class="word" href="#">m</a></td>
+		<td><a class="word" href="#">n</a></td>
+		<td><a class="word" href="#">o</a></td>
+		<td><a class="word" href="#">p</a></td>
+		<td><a class="word" href="#">q</a></td>
+		<td><a class="word" href="#">r</a></td>
+	</tr>
+	<tr>
+		<td><a class="word" href="#">s</a></td>
+		<td><a class="word" href="#">t</a></td>
+		<td><a class="word" href="#">u</a></td>
+		<td><a class="word" href="#">v</a></td>
+		<td><a class="word" href="#">w</a></td>
+		<td><a class="word" href="#">x</a></td>
+	</tr>
+	<tr>
+		<td><a class="word" href="#">y</a></td>
+		<td><a class="word" href="#">z</a></td>
+	</tr>
+	<tr>
+		<td colspan="6"> Country code:
+		<form id="country-code">
+		<input disabled="disabled" type="text" id="word_1" size="1" maxlength="1" />
+		<input disabled="disabled" type="text" id="word_2" size="1"  maxlength="1" />
+		<input type="button" id="get" value="Get" />
+		<input type="reset" id="reset" value="Clear" />
+		</form>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="6">
+			Country flag: <div id='flag'></div>
+		</td>
+	</tr>
+</table>
+<script type="text/javascript" src="js/yass-yc.js"></script>
+<script type="text/javascript" src="js/words.js"></script>
+<script type="text/javascript">
+	window.onload = function(){
+	var links = _('a.word');
+	for(var i = 0; i < links.length; i++) {
+	  	 links[i].onclick = clickOnWord;
+	}
+	_('#get').onclick = function(){
+		var pos_1 = word_array.indexOf(_('#word_1').value)*15;
+		var pos_2 = word_array.indexOf(_('#word_2').value)*11;
+		pos_1 = pos_1 < 0 ? 0 : pos_1*1.0645;
+		pos_2 = pos_2 < 0 ? 0 : pos_2;
+		_('#flag').style.backgroundPosition='-'+(pos_1)+'px '+'-'+(pos_2)+'px';
+	}
+	_('#reset').onclick = function(){
+		_('#word_1').value = '';
+		_('#word_2').value = '';
+		_('#flag').style.backgroundPosition='0px 0px';
+	}
+	}
+	function clickOnWord(){
+		var word_1 = _('#word_1');
+		var word_2 = _('#word_2');
+		if(word_1.value.length > 0 && word_2.value.length > 0) {
+			word_1.value = '';
+			word_2.value = '';
+		}
+		if(word_1.value.length > 0){
+			word_2.value = this.innerHTML;
+		}else{
+			word_1.value = this.innerHTML;
+		}
+		return false;
+	}
+</script>
+</body>
+</html>

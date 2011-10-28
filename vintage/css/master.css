@@ -1,0 +1,121 @@
+html, body { 
+	background: #F5F5F5 url('../images/dark_brick_wall.png') repeat;
+}
+.container-fluid, .container {
+	margin:0 auto;
+}
+.container-fluid, .container .content {
+	padding-top: 40px!important;
+	background: #F5F5F5 url('../images/white_texture.png') repeat;
+}
+
+form {
+	padding:10px;
+	min-height:350px;
+}
+.sidebar {
+	background: #F5F5F5 url('../images/white_texture.png') repeat;
+	width: 360px!important;
+}
+.image {
+	/*background: #F5F5F5 url('../images/subtle_freckles.png') repeat;*/
+	min-width:350px;
+	min-height:350px;
+}
+.image .dropbox {
+	height: 220px;
+	width:500px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-o-border-radius: 10px;
+	border-radius: 10px;
+	border: 1px solid #CCC;
+	background-color: #EEE;
+	text-align: center;
+	font: 11px/220px Tahoma,sans-serif;
+	color: #AAA;
+	text-transform: uppercase;
+	margin: 10px 0 0 20px;
+	position: relative;
+	-webkit-text-shadow: white 1px 1px 0;
+	-moz-text-shadow: white 1px 1px 0;
+	-o-text-shadow: white 1px 1px 0;
+	text-shadow: white 1px 1px 0;
+}
+input[type=range] {
+	position:relative;
+	top:6px;
+	margin:0 5px;
+	width: 90px;
+	font-size: 13px;
+	height: 18px;
+	color: gray;
+	border: 1px solid #CCC;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+.custom {
+	display:none;
+}
+fieldset.custom.screen div{
+	border-radius: 4px;
+}
+label.add-on.single {
+	border-radius: 3px!important;
+	border: 1px solid #CCC!important;
+	padding: 5px!important;
+}
+div.color_preview {
+	height:20px;
+	text-align:center;
+	padding-top:8px;
+}
+div.footer {
+	top:inherit!important;
+	bottom: 0!important;
+	color:#fff;
+}
+div.footer p{
+	margin: 10px;
+	font-size:11px;
+}
+div.topbar .container{
+	width:99%;
+	margin-left:5px;
+}
+.f-right {
+	float:right;
+}
+.none {
+	display:none!important;
+}
+
+.vintage-loader {
+    position: absolute;
+    height: 60px;
+    width: 180px;
+    margin-left: -90px;
+    margin-top: -30px;
+    background-color: #ffffff;
+    background-image: url('clock.png');
+    background-position: 5px 50%;
+    background-repeat: no-repeat;
+    text-align: left;
+    text-indent: 60px;
+    font: 20px/60px 'Georgia','Times New Roman','Times',serif;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 3px solid #333;
+}
+.vintage-loader.error {
+    color: #900;
+    font-size: 12px;
+    line-height: 16px;
+    text-indent: 0;
+    background-image: none;
+    padding: 10px;
+    height: auto;
+    margin-left: -100px;
+}

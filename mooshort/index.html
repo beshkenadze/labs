@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
+<head>
+	<title>MooShort</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<style type="text/css">
+		.short {
+			padding:0 5px;
+			margin:5px;
+		}
+		.red {
+			color:white;
+			background-color:black;
+		}
+		.green {
+			color:white;
+			background-color:green;
+		}
+		.gray {
+			color:white;
+			background-color:gray;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="content">
+			<span class="short" rel="maxlength-35">Гендер выбирает гендер, также это подчеркивается в труде Дж. Морено "Театр Спонтанности"</span><br/>
+			<span class="short red">Сознание важно притягивает эскапизм, также это подчеркивается в труде Дж. Морено "Театр Спонтанности"</span><br/>
+
+			<span class="short green" rel="maxlength-45">Большую роль в популяризации психодрамы сыграл институт социометрии, который рефлексия наблюдаема</span><br/>
+			<span class="short gray" rel="maxlength-105">Бессознательное понимает экзистенциальный филогенез, это обозначено Ли Россом как фундаментальная ошибка атрибуции, которая прослеживается во многих экспериментах</span><br/>
+		</div>
+		<div class="code">
+			<code>
+				<span class="short" rel="maxlength-35">Гендер выбирает гендер, также это подчеркивается в труде Дж. Морено "Театр Спонтанности"</span><br/>
+				<span class="short red">Сознание важно притягивает эскапизм, также это подчеркивается в труде Дж. Морено "Театр Спонтанности"</span><br/>
+
+				<span class="short green" rel="maxlength-45">Большую роль в популяризации психодрамы сыграл институт социометрии, который рефлексия наблюдаема</span><br/>
+				<span class="short gray" rel="maxlength-105">Бессознательное понимает экзистенциальный филогенез, это обозначено Ли Россом как фундаментальная ошибка атрибуции, которая прослеживается во многих экспериментах</span><br/>
+			</code>
+		</div>
+		<button id="shortThis" disabled="disabled">Short!</button>
+	</div>
+
+	<script src="http://www.google.com/jsapi"></script>
+	<script>
+	  // Load mootools
+	  google.load("mootools", "1.2.1");
+	  google.setOnLoadCallback(function() {
+	  	$('shortThis').set('disabled',false);
+	  });
+	</script>
+	<script src="moo.short.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+	  $('shortThis').addEvent('click', function() {
+			$$('.short').short();
+	  });
+	</script>
+	<script type="text/javascript">
+		
+	</script>
+</body>
+</html>

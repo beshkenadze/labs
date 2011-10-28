@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ru-RU">
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			Vintage you photo
+		</title>
+		<link rel="stylesheet" href="css/bootstrap-1.0.0.min.css" type="text/css">
+		<link rel="stylesheet" href="css/master.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="sidebar">
+				<form id="custom-preset">
+					<div class="clearfix">
+						<label for="">Presets</label>
+						<div class="input">
+							<select class="presets small">
+								<option>default</option>
+								<option>green</option>
+								<option>sepia</option>
+								<option>grayscale</option>
+								<option>custom</option>
+							</select>
+						</div>
+					</div>
+					<fieldset class="custom" >
+						<legend>Vignette</legend>
+						<div class="clearfix">
+							<label for="black">Darken edges (<span class="value">0.0</span>)</label>
+							<div class="input">
+								<input value="0.0" id="black" name="black" type="range" min="0.0" max="1" step="0.1">
+							</div>
+						</div><!-- /clearfix -->
+						<div class="clearfix">
+							<label for="white">Lighten center (<span class="value">0.0</span>)</label>
+							<div class="input">
+								<input value="0.0" id="white" name="white" type="range" min="0.0" max="1" step="0.1">
+							</div>
+						</div><!-- /clearfix -->
+					</fieldset>
+					<fieldset class="custom" >
+						<legend>Noise</legend>
+						<div class="clearfix">
+							<label for="black">Noise (<span class="value">0</span>)</label>
+							<div class="input">
+								<input value="0" id="noise" name="noise" type="range" min="0" max="100" step="1">
+							</div>
+						</div><!-- /clearfix -->
+					</fieldset>
+					<fieldset class="custom screen" >
+						<legend>Screen</legend>
+						<div class="clearfix">
+							<label for="black">Red (<span class="value">0</span>)</label>
+							<div class="input">
+								<input class="color" value="0.0" id="red" name="red" type="range" min="0" max="255" step="1">
+							</div>
+						</div><!-- /clearfix -->
+						<div class="clearfix">
+							<label for="black">Green (<span class="value">0</span>)</label>
+							<div class="input">
+								<input class="color" value="0.0" id="green" name="green" type="range" min="0" max="255" step="1">
+							</div>
+						</div><!-- /clearfix -->
+						<div class="clearfix">
+							<label for="black">Blue (<span class="value">0</span>)</label>
+							<div class="input">
+								<input class="color" value="0.0" id="blue" name="blue" type="range" min="0" max="255" step="1">
+							</div>
+						</div><!-- /clearfix -->
+						
+						<div class="clearfix">
+							<label for="white">Strength (<span class="value">0.0</span>)</label>
+							<div class="input">
+								<input value="0.0" id="strength" name="strength" type="range" min="0.0" max="1" step="0.1">
+							</div>
+						</div><!-- /clearfix -->
+						
+						<div class="clearfix color_preview">
+							
+						</div>
+					</fieldset>
+					<fieldset class="custom screen" >
+						<legend>Desaturate</legend>
+						<div class="clearfix">
+							<div class="input">
+								<div class="input-prepend">
+				                	<label class="add-on single"><input type="checkbox" name="desaturate" id="desaturate" value="true"></label>
+				              	</div>
+				            </div>
+						</div><!-- /clearfix -->
+					</fieldset>
+					<div class="custom actions">
+					    <button type="submit" class="btn primary">Apply</button>
+						<button type="reset" class="btn">Cancel</button>
+		          	</div>
+				</form>
+			</div>
+			<div class="content">
+				<div class="container">
+					<div class="image">
+						<!-- <div class="dropbox">
+							Drop image here!
+						</div> -->
+						<img id="image" src="images/beach.jpg" width="500" height="332" alt="Beach">
+					</div>
+				</div>
+			</div>
+		</div>
+<script src="js/jquery-1.5.1.min.js" type="text/javascript" charset="utf-8"></script>
+</script><script src="js/vintage.js" type="text/javascript" charset="utf-8">
+</script>
+		<script type="text/javascript">
+			var real_image = null;
+			var image = null;
+			var parent = null;
+			
+			real_image = $('#image');
+			image = null;
+			parent = real_image.parent();
+			
+			var dropArea = $('.dropbox');
+
+			// Attach our drag and drop handlers.
+			dropArea.bind({
+			    dragover: function () {
+			        $(this).addClass('hover');
+			        return false;
+			    },
+			    dragend: function () {
+			        $(this).removeClass('hover');
+			        return false;
+			    },
+			    drop: function (e) {
+			        e = e || window.event;
+			        e.preventDefault();
+					
+			        // jQuery wraps the originalEvent, so we try to detect that here...
+			        e = e.originalEvent || e;
+			        // Using e.files with fallback because e.dataTransfer is immutable and can't be overridden in Polyfills (http://sandbox.knarly.com/js/dropfiles/).            
+			        var files = (e.files || e.dataTransfer.files);
+					
+			        var $img = $('<img src="" class="uploadPic" title="" alt="" />');
+					if(files.length > 0) {
+						var reader = new FileReader();
+		                reader.onload = function (event) {
+							real_image = $('<img/>',{'id':'image', 'src': event.target.result}).appendTo(dropArea.parent());
+							dropArea.remove();
+							image = null;
+							parent = real_image.parent();
+							
+		                };
+		                reader.readAsDataURL(files[0]);
+					}
+			        // for (var i = 0; i < files.length; i++) {
+			        // 			            (function (i) {
+			        // 			                // Loop through our files with a closure so each of our FileReader's are isolated.
+			        // 			                
+			        // 			            })(i);
+			        // 			        }
+
+			        return false;
+			    }
+			});
+			$("select.presets").change(function () {
+				resetImage();
+				var preset = $(this+":selected").val();
+		    	switch(preset)
+		    	{
+		    	case "green":
+				case "sepia":
+				case "grayscale":
+				  hideCustom();
+				  image.vintage({
+		    	  	//allowMultiEffect: true,
+		    	  	preset: preset
+		    	  });
+		    	  break;
+				case "custom":
+		    	  showCustom(); 
+		    	  break;
+		    	default:
+		    	  // execute code
+		    	}
+		    });
+			$('input[type=range]').change(function() {
+				$(this).parent().prev().children('.value').text(roundNumber(parseFloat($(this).val()),10))
+			}).trigger('change');
+			$('input.color[type=range]').change(function() {
+				$(this).parent().prev().children('.value').text(($(this).val()));
+				updateColor();
+			}).trigger('change');
+			$('#custom-preset').submit(function() {
+				resetImage();
+				var params = $(this).serializeArray();
+				var customOptions = {
+			        vignette: {
+			            black: getFromParams(params,'black',0),
+			            white: getFromParams(params,'white',0)
+			        },
+			        noise: getFromParams(params,'noise',0),
+			        screen: {
+			            red: getFromParams(params,'red',0),
+			            green: getFromParams(params,'green',0),
+			            blue: getFromParams(params,'blue',0),
+			            strength: getFromParams(params,'strength',0)
+			        },
+			        desaturate: getFromParams(params,'desaturate',false)
+			      };
+				image.vintage(customOptions);
+				return false;
+			});
+			function resetImage(){
+				console.log(parent);
+				parent.children(".clone").remove();
+				parent.append(real_image.clone().addClass("clone"));
+				real_image.hide();
+				image = parent.children('.clone').show();
+			}
+			function getFromParams (params, name, default_value) {
+				for (var i=0; i < params.length; i++) {
+					if(params[i].name == name) {
+						if(params[i].value != undefined || params[i].value != null) {
+							return params[i].value;
+						}
+					}
+				};
+				return default_value;
+			}
+			function updateColor () {
+				var bg_color = new Array;
+				$('input.color[type=range]').each(function() {
+					var value = $(this).val();
+					bg_color.push(value);
+				});
+				var hex = rgb2hex(bg_color.join(','));
+				var contrast_hex = ivertColor(bg_color);
+				$('div.color_preview').css('background',hex).text(hex).css('color',(rgb2hex(contrast_hex)));
+			}
+			
+			function showCustom() {
+				$(".custom").show();
+			};
+			function hideCustom() {
+				$(".custom").hide();
+			};
+			function roundNumber(num, dec) {
+				var result = Math.round(num*Math.pow(10,dec))/Math.pow(10,dec);
+				return result;
+			}
+			function ivertColor(array_rgb) {
+				var invert_color = new Array;
+				for (var i=0; i < array_rgb.length; i++) {
+					invert_color.push(255-parseInt(array_rgb[i]));
+				};
+				return invert_color.join(',');
+			}
+			function rgb2hex(num) {
+			    var rgb = num.split(',');
+			    function hex(x) {
+			        return ("0" + parseInt(x).toString(16)).slice(-2);
+			    }
+			    return "#" + hex(rgb[0]) + hex(rgb[1]) + hex(rgb[2]);
+			}
+		</script>
+	</body>
+</html>

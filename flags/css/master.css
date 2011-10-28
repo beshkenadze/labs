@@ -1,0 +1,12 @@
+#flag {
+	width: 15px;
+	height: 11px;
+	background-image: url("images/flags.png");
+}
+
+#word_1,#word_2 {
+	text-align: center;
+	color: black; background-color : white;
+	border: 1px solid black;
+	background-color: white;
+}
